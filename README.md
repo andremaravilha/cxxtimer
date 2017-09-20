@@ -23,7 +23,7 @@ int main(int argc, char** argv) {
     
     // Wait for the users
     std::string input_1;
-    std::cout << "Please, type something and press ENTER to continue: "
+    std::cout << "Please, type something and press ENTER to continue: ";
     std::getline(std::cin, input_1);
     
     // Stop/pause the timer
