@@ -1,5 +1,7 @@
 # cxxtimer: A timer for modern C++
 
+[![Build Status](https://travis-ci.org/andremaravilha/cxxtimer.svg?branch=master)](https://travis-ci.org/andremaravilha/cxxtimer)
+
 This is a header only C++ library that offers an easy-to-use Timer class.
 
 You just need to include the header file `cxxtimer.hpp` and that's it. You can aready instantiate `cxxtimer::Timer` objects to time your C++ programs.
