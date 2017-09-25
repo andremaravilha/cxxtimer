@@ -1,0 +1,36 @@
+# Ubuntu 14.04 Trusty support
+sudo: required
+dist: trusty
+
+# Enable C++ support
+language: cpp
+
+# Build matrix
+matrix:
+  include:
+    - os: linux
+      env: COMPILER=g++-5
+      addons:
+        apt:
+          packages:
+            - g++-5
+          sources:
+            - llvm-toolchain-precise-3.8
+            - ubuntu-toolchain-r-test
+    - os: linux
+      env: COMPILER=clang++-3.8 CXXFLAGS=-stdlib=libc++
+      addons:
+        apt:
+          packages:
+            - clang-3.8
+            - libc++-dev
+          sources:
+            - llvm-toolchain-precise-3.8
+            - ubuntu-toolchain-r-test
+
+# Build steps
+script:
+  - mkdir -p example/build
+  - cd example/build
+  - cmake -DCMAKE_CXX_COMPILER=$COMPILER -DCMAKE_BUILD_TYPE=Release ..
+  - make
