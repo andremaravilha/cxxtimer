@@ -86,7 +86,7 @@ Stop/pause the timer. After calling the method `stop()`, every call to `count()`
 void cxxtimer::reset()
 ```
 
-Stop the timer and reset it. After calling the method `stop()`, every call to `count()` will return zero. To start timing again, you have to call `start()`.
+Stop the timer and reset it. After calling the method `reset()`, every call to `count()` will return zero. To start timing again, you have to call `start()`.
 
 ### count
 
