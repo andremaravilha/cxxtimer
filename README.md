@@ -1,13 +1,16 @@
 # cxxtimer: A timer for modern C++
 
-[![GitHub license](https://img.shields.io/github/license/andremaravilha/cxxtimer)](https://github.com/andremaravilha/cxxtimer/blob/master/LICENSE) 
-[![Build Status](https://travis-ci.org/andremaravilha/cxxtimer.svg?branch=master)](https://travis-ci.org/andremaravilha/cxxtimer) 
-![Lines of code](https://img.shields.io/tokei/lines/github/andremaravilha/cxxtimer) 
-![GitHub repo size](https://img.shields.io/github/repo-size/andremaravilha/cxxtimer) 
+![GitHub Repo stars](https://img.shields.io/github/stars/andremaravilha/cxxtimer) 
+![GitHub forks](https://img.shields.io/github/forks/andremaravilha/cxxtimer) 
+
+[![GitHub License](https://img.shields.io/github/license/andremaravilha/cxxtimer)](https://github.com/andremaravilha/cxxtimer/blob/master/LICENSE) 
+![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/andremaravilha/cxxtimer) 
+![GitHub Release](https://img.shields.io/github/v/release/andremaravilha/cxxtimer) 
+
 
 This is a header only C++ library that offers an easy-to-use Timer class.
 
-You just need to include the header file `cxxtimer.hpp` and that's it. You can aready instantiate `cxxtimer::Timer` objects to time your C++ programs.
+You just need to include the header file `cxxtimer.hpp` and that's it. You can already instantiate `cxxtimer::Timer` objects to time your C++ programs.
 
 ## Quick Start
 
@@ -26,7 +29,7 @@ int main(int argc, char** argv) {
     // Start the timer
     timer.start();
     
-    // Wait for the users
+    // Wait for the user
     std::string input_1;
     std::cout << "Please, type something and press ENTER to continue: ";
     std::getline(std::cin, input_1);
@@ -35,9 +38,9 @@ int main(int argc, char** argv) {
     timer.stop();
     
     // Get the elapsed time
-    std::cout << "You took " << timer.count<std::chrono::seconds>() << " seconds." << std::endl;
-    std::cout << "You took " << timer.count<std::chrono::milliseconds>() << " milliseconds." << std::endl;
-    std::cout << "You took " << timer.count<std::chrono::nanoseconds>() << " nanoseconds." << std::endl;
+    std::cout << "You took " << timer.count<cxxtimer::s>() << " seconds." << std::endl;
+    std::cout << "You took " << timer.count<cxxtimer::ms>() << " milliseconds." << std::endl;
+    std::cout << "You took " << timer.count<cxxtimer::ns>() << " nanoseconds." << std::endl;
     
     return 0;
 }
@@ -56,12 +59,12 @@ cxxtimer::Timer(bool start = false)
 
 If the parameter `start` is set to `true`, the timer will be started just after its construction. If set to `false` or ignored, the timer won't be automatically started after construction.
 
-Besides the constructor above, the copy constructor
+Besides the constructor above, copy constructor
 
 ```cpp
 cxxtimer::Timer(const Timer& other)
 ```
-and the move constructor
+and move constructor
 ```cpp
 Timer(Timer&& other)
 ```
@@ -94,17 +97,20 @@ Stop the timer and reset it. After calling the method `reset()`, every call to `
 ### count
 
 ```cpp
-template <class duration_t = std::chrono::milliseconds>
+template <class duration_t = cxxtimer::ms>
 typename duration_t::rep count() const
 ```
 
-It returns the time elapsed so far. By default, it return the time in milliseconds. However, you can specify the precision you want. For example, to get the time in seconds, you can call `count<std::chrono::seconds>()`. The following options are available:
-- `std::chrono::nanoseconds` for nanoseconds.
-- `std::chrono::microseconds` for microseconds.
-- `std::chrono::milliseconds` for milliseconds (default).
-- `std::chrono::seconds` for seconds.
-- `std::chrono::minutes` for minutes.
-- `std::chrono::hours` for hours.
+It returns the time elapsed so far. By default, it return the time in milliseconds. However, you can specify the precision you want. For example, to get the time in seconds, you can call or `count<std::chrono::seconds>()` or `count<cxxtimer::s>()`. The following options are available:
+
+| Precision                   | Alias           | Description            |
+|-----------------------------|-----------------|------------------------|
+| `std::chrono::nanoseconds`  | `cxxtimer::ns`  | nanoseconds            |
+| `std::chrono::microseconds` | `cxxtimer::us`  | microseconds           |
+| `std::chrono::milliseconds` | `cxxtimer::ms`  | milliseconds (default) |
+| `std::chrono::seconds`      |`cxxtimer::s`    | seconds                |
+| `std::chrono::minutes`      | `cxxtimer::min` | minutes                |
+| `std::chrono::hours`        |`cxxtimer::h`    | hours                  |
 
 
 ## Linking
@@ -114,4 +120,4 @@ This is a header only library.
 
 ## Requirements
 
-The only build requirement is a C++ compiler that supports C++11, since `cxxtimer.hpp` library depends on C++ library `chrono`. For example GCC >= 5.0 or clang >= 3.4.
+The only build requirement is a C++ compiler that supports C++11 or above, since `cxxtimer.hpp` library depends on C++ library `chrono`. For example GCC >= 5.0 or clang >= 3.4.

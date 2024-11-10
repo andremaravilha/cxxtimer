@@ -46,9 +46,9 @@ int main(int argc, char** argv) {
     timer.stop();
     
     // Get the elapsed time
-    std::cout << "You took " << timer.count<std::chrono::seconds>() << " seconds." << std::endl;
-    std::cout << "You took " << timer.count<std::chrono::milliseconds>() << " milliseconds." << std::endl;
-    std::cout << "You took " << timer.count<std::chrono::nanoseconds>() << " nanoseconds." << std::endl;
+    std::cout << "You took " << timer.count<cxxtimer::s>() << " seconds." << std::endl;
+    std::cout << "You took " << timer.count<cxxtimer::ms>() << " milliseconds." << std::endl;
+    std::cout << "You took " << timer.count<cxxtimer::ns>() << " nanoseconds." << std::endl;
     
     return 0;
 }

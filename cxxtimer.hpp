@@ -32,6 +32,18 @@ SOFTWARE.
 
 namespace cxxtimer {
 
+
+/**
+ * Alias for the most common time units.
+ */
+using ns  = std::chrono::nanoseconds;
+using us  = std::chrono::microseconds;
+using ms  = std::chrono::milliseconds;
+using s   = std::chrono::seconds;
+using min = std::chrono::minutes;
+using h   = std::chrono::hours;
+
+
 /**
  * This class works as a stopwatch.
  */
@@ -110,11 +122,11 @@ public:
      * @param   duration_t
      *          The duration type used to return the time elapsed. If not
      *          specified, it returns the time as represented by
-     *          std::chrono::milliseconds.
+     *          cxxtimer::ms (milliseconds).
      *
      * @return  The elapsed time.
      */
-    template <class duration_t = std::chrono::milliseconds>
+    template <class duration_t = ms>
     typename duration_t::rep count() const;
 
 private:
